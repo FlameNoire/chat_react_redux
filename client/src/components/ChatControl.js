@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ws from 'util/ws'
 
 export default class ChatControl extends Component {
     constructor() {
