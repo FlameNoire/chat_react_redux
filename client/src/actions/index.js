@@ -1,5 +1,11 @@
 import constants from 'constants/index'
 
+export const firstConnection = (clientsList, userName) => {
+    return {
+        type: constants.CONNECTION,
+        clientsList, userName
+    }
+}
 export const connectedNewUser = ({ userID, userName }) => {
     return {
         type: constants.CONNECTED_NEW_USER,

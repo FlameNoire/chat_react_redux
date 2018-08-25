@@ -6,7 +6,7 @@ export default class MessageItem extends Component {
         return (
             <li class="clearfix">
                 <div class="message-data align-right">
-                    <span class="message-data-time">{Date(time)}</span> &nbsp; &nbsp;
+                    <span class="message-data-time">{time}</span> &nbsp; &nbsp;
                     <span class="message-data-name">{author}</span>
                     <i class="fa fa-circle me"/>
 

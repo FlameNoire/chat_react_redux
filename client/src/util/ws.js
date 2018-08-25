@@ -1,4 +1,4 @@
-import { connectedNewUser, disconnectedUser, receiveNewMessage } from 'actions/index'
+import { firstConnection, connectedNewUser, disconnectedUser, receiveNewMessage } from 'actions/index'
 import store from 'store/index'
 
 export default ((wsUrl) => {
@@ -7,16 +7,16 @@ export default ((wsUrl) => {
 
     ws = new WebSocket(wsUrl);
 
-    ws.onopen = () => {
-        console.log('WS Open!');
-    }
-
     ws.onmessage = (message) => {
         const messageObj = JSON.parse(message.data)
 
         console.log('ws message', messageObj)
 
         switch (messageObj.type) {
+            case 'send_clients':
+                console.log(messageObj.clientsList)
+                dispatch(firstConnection(messageObj.clientsList, messageObj.userName))
+                break
             case 'connected_new_user':
                 // const { userID, userName } = messageObj
                 dispatch(connectedNewUser(messageObj))

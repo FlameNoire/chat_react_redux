@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-export default class ChatHeader extends Component {
+class ChatHeader extends Component {
+
     render() {
         return (
             <div class="chat-header clearfix">
@@ -8,7 +10,7 @@ export default class ChatHeader extends Component {
                      alt="avatar"/>
 
                 <div class="chat-about">
-                    <div class="chat-with">Some chat</div>
+                    {this.props.user.userName}
                     <div class="chat-num-messages">already 1 902 messages</div>
                 </div>
                 <i class="fa fa-star"/>
@@ -16,3 +18,15 @@ export default class ChatHeader extends Component {
         )
     }
 }
+const  mapStateToProps = (state) => {
+    return {
+        user: state.userReducer
+    }
+}
+const  mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatHeader)
